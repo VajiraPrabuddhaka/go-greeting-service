@@ -30,8 +30,6 @@ func GreetingHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	// Register the handler function with the default serve mux ("/greet" route)
 	http.HandleFunc("/greet", GreetingHandler)
-	// add a panic to test the error handling
-	panic("a problem")
 	// Start the HTTP server on port 8080
 	fmt.Println("Server is listening on port 8080...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
