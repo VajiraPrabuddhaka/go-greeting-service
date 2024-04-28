@@ -13,6 +13,9 @@ RUN go mod download
 # https://docs.docker.com/reference/dockerfile/#copy
 COPY *.go ./
 
+RUN addgroup -g 10014 choreo && \
+    adduser  --disabled-password --uid 10014 --ingroup choreo choreouser
+
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-sample-app
 
@@ -22,6 +25,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-sample-app
 # the application is going to listen on by default.
 # https://docs.docker.com/reference/dockerfile/#expose
 EXPOSE 8080
+
+USER 10014
 
 # Run
 CMD ["/docker-sample-app"]
