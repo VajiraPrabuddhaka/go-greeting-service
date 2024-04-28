@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -19,12 +20,29 @@ func GreetingHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Parse query parameter "name"
 	name := r.URL.Query().Get("name")
-	if name == "" {
-		name = "World"
+
+	fmt.Printf("Making a http request to private service name:%s", name)
+
+	requestURL := fmt.Sprintf("http://100.95.126.2:%d?name=%s", 8090, name)
+	res, err := http.Get(requestURL)
+	if err != nil {
+		fmt.Printf("error making http request: %s\n", err)
+	}
+
+	bookStatus := new(LibraryServiceResponse)
+
+	// Read the response body
+	if err := json.NewDecoder(res.Body).Decode(bookStatus); err != nil {
+		fmt.Printf("error parsing response: %s\n", err)
 	}
 
 	// Write the response
-	fmt.Fprintf(w, "Hello, %s!", name)
+	fmt.Fprintf(w, "Hello, %s..!! %s", bookStatus.Name, bookStatus.Message)
+}
+
+type LibraryServiceResponse struct {
+	Name    string `json:"name"`
+	Message string `json:"message"`
 }
 
 func main() {
