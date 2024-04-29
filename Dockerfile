@@ -29,4 +29,4 @@ EXPOSE 8080
 USER 10014
 
 # Run
-CMD ["/docker-sample-app"]
+CMD ["ALL_PROXY=socks5://localhost:1055/ /docker-sample-app"]
