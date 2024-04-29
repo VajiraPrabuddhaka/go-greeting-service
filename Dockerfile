@@ -29,4 +29,4 @@ EXPOSE 8080
 USER 10014
 
 # Run
-CMD ["ALL_PROXY=socks5://tsproxy-service:1055/ /docker-sample-app"]
+CMD ["HTTP_PROXY=socks5://tsproxy-service:1055/ /docker-sample-app"]
