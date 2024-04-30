@@ -23,7 +23,7 @@ func GreetingHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("Making a http request to private service name:%s", name)
 
-	requestURL := fmt.Sprintf("http://100.95.126.2:%d?name=%s", 8090, name)
+	requestURL := fmt.Sprintf("http://tsproxy-service:%d?name=%s", 8080, name)
 	res, err := http.Get(requestURL)
 	if err != nil {
 		fmt.Printf("error making http request: %s\n", err)
