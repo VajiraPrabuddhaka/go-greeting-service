@@ -1,1 +1,1 @@
-ALL_PROXY=socks5://ts-proxy-2-2097238423:1055/ HTTP_PROXY=http://localhost:1055/ http_proxy=http://localhost:1055/ /go/bin/app
+ALL_PROXY=socks5://ts-proxy-2-2097238423:1055/ HTTP_PROXY=http://ts-proxy-2-2097238423:1055/ http_proxy=http://ts-proxy-2-2097238423:1055/ /docker-sample-app
