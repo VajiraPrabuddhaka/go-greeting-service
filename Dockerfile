@@ -26,9 +26,11 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-sample-app
 # https://docs.docker.com/reference/dockerfile/#expose
 EXPOSE 8080
 
+RUN mkdir /wso2
+WORKDIR /wso2
+COPY start.sh .
+
 USER 10014
 
-ENV ALL_PROXY=socks5://tsproxy-service:1055/
-
 # Run
-CMD ["/docker-sample-app"]
+CMD ["/wso2/start.sh"]
