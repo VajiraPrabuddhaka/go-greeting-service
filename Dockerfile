@@ -16,6 +16,7 @@ COPY *.go ./
 RUN addgroup -g 10014 choreo && \
     adduser  --disabled-password --uid 10014 --ingroup choreo choreouser
 
+RUN go get go-greeting-service
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-sample-app
 
